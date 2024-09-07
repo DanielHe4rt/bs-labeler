@@ -33,7 +33,12 @@ bot.on("like", async ({ subject, user }) => {
     console.log(label)
     if (label) {
       console.log("Labeling " + user.handle + " with " + label);
-      await user.labelAccount([label]);
+      let fodase = await server.createLabel({
+        uri: user.did,
+        val: label,
+      });
+      
+      console.log(fodase)
     }
   }
 });
