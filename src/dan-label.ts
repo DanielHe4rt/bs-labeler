@@ -1,5 +1,5 @@
 import { LabelerServer } from "@skyware/labeler";
-import { Bot } from "@skyware/bot";
+import {Bot, Post} from "@skyware/bot";
 import 'dotenv/config'
 
 const server = new LabelerServer({
