@@ -1,0 +1,24 @@
+{
+  "name": "pronouns-bsky",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "npx tsx src/main.ts",
+    "dev": "npx tsx --watch src/main.ts"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/node": "^20.14.10",
+    "typescript": "^5.5.3"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^0.0.58",
+    "@atproto/api": "^0.13.0",
+    "@skyware/firehose": "^0.3.1",
+    "@skyware/labeler": "^0.1.2-fix.1",
+    "ai": "^3.3.28",
+    "canvas": "^2.11.2",
+    "dotenv": "^16.4.5",
+    "zod": "^3.23.8"
+  }
+}
