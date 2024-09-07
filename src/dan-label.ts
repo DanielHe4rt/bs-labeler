@@ -28,6 +28,13 @@ const postsToLabels: Record<string, string> = {
 
 bot.on("like", async ({ subject, user }) => {
   console.log(user.handle + " liked " + subject.uri);
+
+  let fodase = await user.getLabeler()
+  console.log("labeler:")
+  console.log(fodase)
+  
+  console.log(user.labels)
+  
   if (subject instanceof Post) {
     const label = postsToLabels[subject.uri];
     console.log(label)
