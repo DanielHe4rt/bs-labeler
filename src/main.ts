@@ -10,6 +10,7 @@ const allTags = Object
   .map((tag) => tag.values.reduce((acc, val: any) => acc.concat(val.slug), []))
   .reduce((acc, val) => acc.concat(val), []);
 
+console.log("All tags: " + allTags);
 
 const server = new LabelerServer({
   did: process.env.LABELER_DID!,
@@ -54,8 +55,8 @@ bot.on('like', async ({ subject, user }) => {
     console.log(' -> [v] Clearing ' + user.handle + ' labels');
     let userLabels = server.db.prepare('SELECT * FROM labels WHERE uri = ?').all(user.did);
     console.log(" -> [v] Negating " + userLabels.map((label: any) => label.val));
-    
-    let response = await user.negateAccountLabels(allTags);
+
+    let response = await server.createLabels({ uri: user.did }, { negate: allTags });
     console.log(" -> [v] Response: " + response);
     
     server.db.prepare('DELETE FROM labels WHERE uri = ?').run(user.did);
