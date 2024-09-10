@@ -28,10 +28,6 @@ const postsToLabels: Record<string, string> = {
 
 bot.on("like", async ({ subject, user }) => {
   console.log(user.handle + " liked " + subject.uri);
-
-  let fodase = await user.getLabeler()
-  console.log("labeler:")
-  console.log(fodase)
   
   console.log(user.labels)
   
@@ -40,11 +36,7 @@ bot.on("like", async ({ subject, user }) => {
     console.log(label)
     if (label) {
       console.log("Labeling " + user.handle + " with " + label);
-      let fodase = await server.createLabel({
-        uri: user.did,
-        val: label,
-      });
-      
+      let fodase = await user.labelAccount([label])
       console.log(fodase)
     }
   }
