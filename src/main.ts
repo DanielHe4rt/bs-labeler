@@ -1,47 +1,53 @@
-import { AppBskyFeedLike } from '@atproto/api';
-import { Firehose } from '@skyware/firehose';
-import { label } from './label.js';
-import { DID } from './constants.js';
-import fs from 'node:fs';
+import { LabelerServer } from '@skyware/labeler';
+import { Bot, Post } from '@skyware/bot';
+import 'dotenv/config';
+import { LabelType } from './type.js';
 
-const subscribe = async () => {
-  let cursorFirehose = 0;
-  let intervalID: NodeJS.Timeout;
-  const cursorFile = fs.readFileSync('cursor.txt', 'utf8');
+const server = new LabelerServer({
+  did: process.env.LABELER_DID!,
+  signingKey: process.env.SIGNING_KEY!,
+});
 
-  const firehose = new Firehose({ cursor: cursorFile ?? '' });
-  if (cursorFile) console.log(`Initiate firehose at cursor ${cursorFile}`);
+server.start(4001, (error) => {
+  if (error) {
+    console.error('Failed to start server:', error);
+  } else {
+    console.log('Labeler server running on port 14831');
+  }
+});
 
-  firehose.on('error', ({ cursor, error }) => {
-    console.log(`Firehose errored on cursor: ${cursor}`, error);
-  });
 
-  firehose.on('open', () => {
-    intervalID = setInterval(() => {
-      const timestamp = new Date().toISOString();
-      console.log(`${timestamp} cursor: ${cursorFirehose}`);
-      fs.writeFile('cursor.txt', cursorFirehose.toString(), (err) => {
-        if (err) console.error(err);
-      });
-    }, 60000);
-  });
+const bot = new Bot();
+await bot.login({
+  identifier: process.env.LABELER_DID!,
+  password: process.env.LABELER_PASSWORD!,
+});
 
-  firehose.on('close', () => {
-    clearInterval(intervalID);
-  });
+const availableLabels = new Map<string, LabelType>();
 
-  firehose.on('commit', (commit) => {
-    cursorFirehose = commit.seq;
-    commit.ops.forEach(async (op) => {
-      if (op.action !== 'delete' && AppBskyFeedLike.isRecord(op.record)) {
-        if (op.record.subject.uri.includes(DID)) {
-          await label(commit.repo, op.record.subject.uri.split('/').pop()!).catch((err) => console.error(err));
-        }
-      }
-    });
-  });
+server.db.prepare('SELECT * FROM labels_definitions').all().forEach((row: any) => availableLabels.set(row.uri as string, row as LabelType));
 
-  firehose.start();
-};
 
-subscribe();
+bot.on('like', async ({ subject, user }) => {
+  console.log(user.handle + ' liked ' + subject.uri);
+
+  if (!(subject instanceof Post)) {
+    console.log(' -> [x] Subject is not a post');
+    return;
+  }
+
+  const label = availableLabels.get(subject.uri);
+  if (!label) {
+    console.log(' -> [x] Post isn\'t related to any label');
+    return;
+  }
+
+  if (label.delete_trigger) {
+    console.log(' -> [v] Clearing ' + user.handle + ' labels');
+    await user.negateAccountLabels(user.labels.map((label) => label.val));
+  }
+
+  console.log(' -> [v] Labeling ' + user.handle + ' with ' + label.name);
+  await user.labelAccount([label.slug]);
+});
+

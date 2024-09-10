@@ -5,9 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="45e89458-a32f-40e7-9509-eae101fc7384" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/clear-posts.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/setup.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/tags.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/type.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/dan-label.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/dan-label.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dan-bot.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/dan-label.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/label.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +26,11 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JsbtTreeLayoutManager">
+    <layout place="tools.popupnpm">
+      <scroll-view-position x="0" y="0" />
+    </layout>
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -58,7 +73,7 @@
       <workItem from="1725737280921" duration="3509000" />
       <workItem from="1725741025090" duration="472000" />
       <workItem from="1725741787590" duration="3802000" />
-      <workItem from="1725927130164" duration="717000" />
+      <workItem from="1725927130164" duration="14339000" />
     </task>
     <servers />
   </component>

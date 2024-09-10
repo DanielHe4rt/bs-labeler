@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "start": "npx tsx src/main.ts",
+    "setup": "npx tsx src/setup.ts",
+    "clear": "npx tsx src/clear-posts.ts",
     "dev": "npx tsx --watch src/main.ts"
   },
   "devDependencies": {
@@ -13,10 +14,10 @@
   },
   "dependencies": {
     "@ai-sdk/openai": "^0.0.58",
-    "@atproto/api": "^0.13.0",
+    "@atproto/api": "^0.13.6",
     "@skyware/bot": "^0.3.2",
     "@skyware/firehose": "^0.3.1",
-    "@skyware/labeler": "^0.1.6",
+    "@skyware/labeler": "^0.1",
     "dotenv": "^16.4.5"
   }
 }
