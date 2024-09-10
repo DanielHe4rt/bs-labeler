@@ -8,7 +8,7 @@ import {tags} from './tags.js';
 const allTags = Object
   .values(tags)
   .map((tag) => tag.values.reduce((acc, val: any) => acc.concat(val.slug), []))
-  .reduce((acc, val) => acc.concat(val), []);
+  .reduce((acc, val) => acc.concat(val), [])
 
 console.log("All tags: " + allTags);
 
@@ -56,7 +56,7 @@ bot.on('like', async ({ subject, user }) => {
     let userLabels = server.db.prepare('SELECT * FROM labels WHERE uri = ?').all(user.did);
     console.log(" -> [v] Negating " + userLabels.map((label: any) => label.val));
 
-    let response = await server.createLabels({ uri: user.did }, { negate: allTags });
+    let response = await server.createLabels({ uri: user.did }, { negate: [...allTags, 'clear'] });
     console.log(" -> [v] Response: " + response);
     
     server.db.prepare('DELETE FROM labels WHERE uri = ?').run(user.did);
