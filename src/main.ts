@@ -2,6 +2,14 @@ import { LabelerServer } from '@skyware/labeler';
 import { Bot, Post } from '@skyware/bot';
 import 'dotenv/config';
 import { LabelType } from './type.js';
+import {tags} from './tags.js';
+
+
+const allTags = Object
+  .values(tags)
+  .map((tag) => tag.values.reduce((acc, val: any) => acc.concat(val.slug), []))
+  .reduce((acc, val) => acc.concat(val), []);
+
 
 const server = new LabelerServer({
   did: process.env.LABELER_DID!,
@@ -47,7 +55,7 @@ bot.on('like', async ({ subject, user }) => {
     let userLabels = server.db.prepare('SELECT * FROM labels WHERE uri = ?').all(user.did);
     console.log(" -> [v] Negating " + userLabels.map((label: any) => label.val));
     
-    await user.negateAccountLabels(userLabels.map((label: any) => label.val));
+    await user.negateAccountLabels(allTags);
     
     server.db.prepare('DELETE FROM labels WHERE uri = ?').run(user.did);
     return;
