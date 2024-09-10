@@ -45,10 +45,12 @@ bot.on('like', async ({ subject, user }) => {
   if (label.delete_trigger) {
     console.log(' -> [v] Clearing ' + user.handle + ' labels');
     let userLabels = server.db.prepare('SELECT * FROM labels WHERE uri = ?').all(user.did);
+    console.log(" -> [v] Negating " + userLabels.map((label: any) => label.val));
     
     await user.negateAccountLabels(userLabels.map((label: any) => label.val));
     
     server.db.prepare('DELETE FROM labels WHERE uri = ?').run(user.did);
+    return;
   }
 
   console.log(' -> [v] Labeling ' + user.handle + ' with ' + label.name);
