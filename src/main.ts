@@ -29,7 +29,7 @@ server.db.prepare('SELECT * FROM labels_definitions').all().forEach((row: any) =
 
 
 bot.on('like', async ({ subject, user }) => {
-  console.log(user.handle + ' liked ' + subject.uri);
+  console.log(user.handle + `(${user.did})` + ' liked ' + subject.uri);
 
   if (!(subject instanceof Post)) {
     console.log(' -> [x] Subject is not a post');
@@ -44,7 +44,11 @@ bot.on('like', async ({ subject, user }) => {
 
   if (label.delete_trigger) {
     console.log(' -> [v] Clearing ' + user.handle + ' labels');
-    await user.negateAccountLabels(user.labels.map((label) => label.val));
+    let userLabels = server.db.prepare('SELECT * FROM labels WHERE uri = ?').all(user.did);
+    
+    await user.negateAccountLabels(userLabels.map((label: any) => label.val));
+    
+    server.db.prepare('DELETE FROM labels WHERE uri = ?').run(user.did);
   }
 
   console.log(' -> [v] Labeling ' + user.handle + ' with ' + label.name);
