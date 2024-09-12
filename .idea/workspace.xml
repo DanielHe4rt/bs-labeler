@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="45e89458-a32f-40e7-9509-eae101fc7384" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/tags.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/tags.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,6 +37,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/danielhe4rt/dev/scylladb/studio&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -62,7 +65,10 @@
       <workItem from="1725737280921" duration="3509000" />
       <workItem from="1725741025090" duration="472000" />
       <workItem from="1725741787590" duration="3802000" />
-      <workItem from="1725927130164" duration="17310000" />
+      <workItem from="1725927130164" duration="18198000" />
+      <workItem from="1725983022917" duration="2096000" />
+      <workItem from="1726080833602" duration="21000" />
+      <workItem from="1726163674303" duration="932000" />
     </task>
     <servers />
   </component>

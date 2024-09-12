@@ -18,6 +18,7 @@
     "@skyware/bot": "^0.3.2",
     "@skyware/firehose": "^0.3.1",
     "@skyware/labeler": "^0.1",
+    "chalk": "^5.3.0",
     "dotenv": "^16.4.5"
   }
 }
