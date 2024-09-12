@@ -42,16 +42,15 @@ bot.on('like', async ({ subject, user }) => {
 
   const handle = chalk.underline(user.handle);
   if (!(subject instanceof Post)) {
-    console.log(chalk.cyan("[L]" + handle + `(${user.did})` + ' liked the labeler'));
+    console.log(chalk.cyan("[L] " + handle + ' liked the labeler!'));
     return;
   }
 
   const label = availableLabels.get(subject.uri);
   if (!label) {
-    console.log(chalk.magenta("[L]" + handle + `(${user.did})` + ' liked a random post! (thx)'));
+    console.log(chalk.magenta("[L] " + handle + ' liked a random post! (thx)'));
     return;
   }
-  
 
   if (label.delete_trigger) {
     let userLabels = server.db.prepare('SELECT * FROM labels WHERE uri = ?').all(user.did);
@@ -63,6 +62,6 @@ bot.on('like', async ({ subject, user }) => {
     return;
   }
   await user.labelAccount([label.slug]);
-  console.log(chalk.green('[N] Labeling ' + handle + ' with ' + label.name + '... (' + user.labels.length + ' labels)'));
+  console.log(chalk.green('[N] Labeling ' + handle + ' with ' + label.name ));
 });
 
