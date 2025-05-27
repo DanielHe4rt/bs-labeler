@@ -235,6 +235,12 @@ export const tags: Labels = {
         description:
           'PowerShell is a cross-platform task automation solution made up of a command-line shell, a scripting language, and a configuration management framework.',
       },
+      {
+        slug: 'haxe',
+        name: 'Haxe',
+        description:
+          'Haxe is an open source high-level strictly-typed programming language with a fast optimizing cross-compiler.',
+      },
     ],
   },
   occupations: {
