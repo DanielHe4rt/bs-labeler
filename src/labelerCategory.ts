@@ -235,6 +235,12 @@ export const tags: Labels = {
         description:
           'PowerShell is a cross-platform task automation solution made up of a command-line shell, a scripting language, and a configuration management framework.',
       },
+      {
+        slug: 'c',
+        name: 'C',
+        description:
+          'C is a general-purpose programming language created by Dennis Ritchie in the early 1970s, primarily for system programming and developing the UNIX operating system.',
+      },
     ],
   },
   occupations: {
