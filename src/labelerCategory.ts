@@ -335,7 +335,7 @@ export const tags: Labels = {
   },
   clearAll: {
     description: "Clear your tags liking here",
-    delete_trigger: false,
+    delete_trigger: true,
     values: []
   }
 }
